@@ -50,9 +50,10 @@ function compChooseSpace() {
   }
 }
 
-function placeMark(event) {
-  event.target.firstChild.textContent = human.player;
-  var space = event.target.firstChild.id;
+function placeMark(target) {
+  console.log(target);
+  target.textContent = human.player;
+  var space = target.id;
   addMark('human', space);
   removeSpace();
 }
@@ -66,8 +67,9 @@ function computerTurn() {
   }
 }
 
-function humanTurn(event) {
-  placeMark(event);
+function humanTurn(target) {
+  console.log(target);
+  placeMark(target);
   if (win()) {
 
   } else {
@@ -84,7 +86,8 @@ function ready() {
   for (var i = 0; i < divs.length; i++) {
     divs[i].addEventListener("click", function(event) {
       console.log('clicked');
-      humanTurn(event);
+      var target = event.target.firstElementChild;
+      humanTurn(target);
     });
   }
   selectPlayer();
