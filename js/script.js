@@ -29,7 +29,7 @@ function computerTurn() {
 
 }
 
-function humanTurn() {
+function humanTurn(event) {
 
 }
 
@@ -41,9 +41,10 @@ function ready() {
   var buttons = document.querySelectorAll('.button');
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function(event) {
-      getCorrectFunction(event.target.id, event.target.innerHTML);
+      humanTurn(event);
     });
   }
+  selectPlayer();
 }
 
 var everythingLoaded = setInterval(function() {
