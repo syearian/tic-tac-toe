@@ -49,9 +49,7 @@ function addMark(player, space) {
 }
 
 function removeSpace(space) {
-  console.log(space);
   var index = availSpaces.indexOf(space);
-  console.log(index);
   if (index === 0) {
     availSpaces.shift();
   } else if (index === (availSpaces.length -1)) {
