@@ -17,11 +17,11 @@ function selectPlayer() {
 
 }
 
-function win() {
+function win(player) {
 
 }
 
-function placeMark() {
+function placeMark(event) {
 
 }
 
@@ -38,9 +38,9 @@ function reset() {
 }
 
 function ready() {
-  var buttons = document.querySelectorAll('.button');
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function(event) {
+  var divs = document.querySelectorAll('.center');
+  for (var i = 0; i < divs.length; i++) {
+    divs[i].addEventListener("click", function(event) {
       humanTurn(event);
     });
   }
