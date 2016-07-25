@@ -70,7 +70,6 @@ function compChooseSpace() {
 }
 
 function placeMark(target) {
-  console.log(target);
   target.textContent = human.player;
   var space = parseInt(target.id);
   addMark('human', space);
@@ -87,7 +86,6 @@ function computerTurn() {
 }
 
 function humanTurn(target) {
-  console.log(target);
   placeMark(target);
   if (win()) {
 
@@ -104,7 +102,6 @@ function ready() {
   var divs = document.querySelectorAll('.center');
   for (var i = 0; i < divs.length; i++) {
     divs[i].addEventListener("click", function(event) {
-      console.log('clicked');
       var target = event.target.firstElementChild;
       humanTurn(target);
     });
