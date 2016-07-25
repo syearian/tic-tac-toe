@@ -49,14 +49,16 @@ function addMark(player, space) {
 }
 
 function removeSpace(space) {
+  console.log(space);
   var index = availSpaces.indexOf(space);
+  console.log(index);
   if (index === 0) {
     availSpaces.shift();
   } else if (index === (availSpaces.length -1)) {
     availSpaces.pop();
   } else {
     var beginArr = availSpaces.slice(0, index);
-    var endArr = availSpaces.slice(index);
+    var endArr = availSpaces.slice(index + 1);
     availSpaces = beginArr.concat(endArr);
   }
 }
@@ -72,9 +74,9 @@ function compChooseSpace() {
 function placeMark(target) {
   console.log(target);
   target.textContent = human.player;
-  var space = target.id;
+  var space = parseInt(target.id);
   addMark('human', space);
-  removeSpace();
+  removeSpace(space);
 }
 
 function computerTurn() {
@@ -92,7 +94,7 @@ function humanTurn(target) {
   if (win()) {
 
   } else {
-    computerTurn();
+    //computerTurn();
   }
 }
 
