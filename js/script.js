@@ -21,15 +21,48 @@ function win(player) {
 
 }
 
-function placeMark(event) {
+function addMark(player, space) {
+  if (player === 'human') {
+    human.marks.push(space);
+  } else {
+    computer.marks.push(space);
+  }
+}
 
+function removeSpace(space) {
+}
+
+function compChooseSpace() {
+  if (computer.marks.length === 0) {
+
+  } else {
+
+  }
+}
+
+function placeMark(event) {
+  event.target.firstChild.textContent = human.player;
+  var space = event.target.firstChild.id;
+  addMark('human', space);
+  removeSpace();
 }
 
 function computerTurn() {
 
+  if (win()) {
+
+  } else {
+    humanTurn();
+  }
 }
 
 function humanTurn(event) {
+  placeMark(event);
+  if (win()) {
+
+  } else {
+    computerTurn();
+  }
 }
 
 function reset() {
@@ -40,6 +73,7 @@ function ready() {
   var divs = document.querySelectorAll('.center');
   for (var i = 0; i < divs.length; i++) {
     divs[i].addEventListener("click", function(event) {
+      console.log('clicked');
       humanTurn(event);
     });
   }
