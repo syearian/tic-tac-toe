@@ -71,6 +71,14 @@ main {
   height: 100%;
 }
 
+div.ui-dialog-titlebar {
+  background-color: #303030;
+}
+
+.ui-dialog .ui-dialog-title {
+  text-align: center;
+}
+
 @media only screen and (min-width: 760px) {
   main {
     width: 604px;

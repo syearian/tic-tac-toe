@@ -14,7 +14,26 @@ var computer = {
 }
 
 function selectPlayer() {
-
+  $( function() {
+    $( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "X": function() {
+          human.player = 'X';
+          computer.player = 'O';
+          $( this ).dialog( "close" );
+        },
+        "O": function() {
+          human.player = 'O';
+          computer.player = 'X';
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  } );
 }
 
 function win(player) {
