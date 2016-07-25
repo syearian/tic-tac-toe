@@ -24,7 +24,7 @@ time, mark, audio {
 }
 
 body {
-  background-color: #262626;
+  background-color: #303030;
   color: #eee;
   font-size: 16px;
   font-family: Lato, sans-serif;
@@ -39,15 +39,39 @@ header h1 {
   margin: 30px;
 }
 main {
-  width: 95%;
+  width: 304px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #262626;
+}
+
+.row {
+  display: flex;
+}
+
+.row1, .row2 {
+  border-bottom: 2px solid #eee;
+}
+
+.col1, .col2, .col3 {
+  width: 100px;
+  height: 100px;
+}
+
+.col1, .col2 {
+  border-right: 2px solid #eee;
 }
 
 @media only screen and (min-width: 760px) {
   main {
-    width: 70%;
-    margin-left: auto;
+    width: 604px;
     margin-right: auto;
+    margin-bottom: 30px;
+    margin-left: auto;
+  }
+
+  .col1, .col2, .col3 {
+    width: 200px;
+    height: 200px;
   }
 }
