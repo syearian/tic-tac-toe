@@ -43,6 +43,7 @@ main {
   margin-left: auto;
   margin-right: auto;
   background-color: #262626;
+  font-size: 32px;
 }
 
 .row {
@@ -60,6 +61,14 @@ main {
 
 .col1, .col2 {
   border-right: 2px solid #eee;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 @media only screen and (min-width: 760px) {
