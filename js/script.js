@@ -3,7 +3,7 @@ var availSpaces = spaces;
 var corners = [1,3,7,9];
 var availCorners = corners;
 var center = 5;
-var wins = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]]; 
+var winCombos = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]]; 
 var human = {
   player: '',
   marks: []
@@ -30,7 +30,6 @@ function computerTurn() {
 }
 
 function humanTurn(event) {
-
 }
 
 function reset() {
