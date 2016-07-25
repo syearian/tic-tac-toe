@@ -30,6 +30,16 @@ function addMark(player, space) {
 }
 
 function removeSpace(space) {
+  var index = availSpaces.indexOf(space);
+  if (index === 0) {
+    availSpaces.shift();
+  } else if (index === (availSpaces.length -1)) {
+    availSpaces.pop();
+  } else {
+    var beginArr = availSpaces.slice(0, index);
+    var endArr = availSpaces.slice(index);
+    availSpaces = beginArr.concat(endArr);
+  }
 }
 
 function compChooseSpace() {
