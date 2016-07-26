@@ -4,6 +4,7 @@ var cornerCenter = [1,3,5,7,9];
 var availCornCent = cornerCenter;
 var winCombos = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]];
 var aboutToWin = [[],[]];
+var compAboutToWin = [[],[]];
 var human = {
   xOrO: '',
   marks: []
@@ -136,10 +137,48 @@ function humanAboutToWin() {
   }
 }
 
+function computerAboutToWin() {
+  for (var elem in winCombos) {
+    var humanCount = 0;
+    var compCount = 0;
+    for (var e in winCombos[elem]) {
+      if (computer.marks.indexOf(winCombos[elem][e]) !== -1) {
+        compCount++
+      } else if (human.marks.indexOf(winCombos[elem][e]) !== -1) {
+        humanCount++
+      }
+    }
+    // console.log('humanCount: ' + humanCount);
+    // console.log('compCount: ' + compCount);
+    if (compCount === 2 && humanCount === 0) {
+      compAboutToWin[0] = winCombos[elem]; 
+      for (el in winCombos[elem]) {
+        // console.log('el: ' + winCombos[elem][el]);
+        if (computer.marks.indexOf(winCombos[elem][el]) !== -1) {
+          compAboutToWin[1].push(winCombos[elem][el]);
+        }
+      }
+      // console.dir(compAboutToWin);
+      return true;
+    }
+  }
+}
+
 function compChooseSpace() {
   var space;
   humanAboutToWin();
-  if (aboutToWin[1].length > 0) {
+  if (computerAboutToWin()) {
+    for (var e in compAboutToWin[0]) {
+      if (!(alreadyMarked(compAboutToWin[0][e]))) {
+        space = compAboutToWin[0][e];
+        console.log('space: ' + space)
+      }
+    }
+    addMark(computer, space);
+    document.getElementById(space.toString()).textContent = computer.xOrO;
+    removeSpace(space);
+    aboutToWin = [[],[]];
+  } else if (aboutToWin[1].length > 0) {
     for (var e in aboutToWin[0]) {
       if (!(alreadyMarked(aboutToWin[0][e]))) {
         space = aboutToWin[0][e];
