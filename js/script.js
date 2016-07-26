@@ -103,7 +103,6 @@ function humanTurn(target) {
 
 function alreadyMarked(space) {
   if (human.marks.indexOf(space) !== -1 || computer.marks.indexOf(space) !== -1) {
-  console.log('already marked: ' + space);
     return true;
   } else {
     return false;
@@ -121,17 +120,13 @@ function humanAboutToWin() {
         compCount++
       }
     }
-    // console.log('humanCount: ' + humanCount);
-    // console.log('compCount: ' + compCount);
     if (humanCount === 2 && compCount === 0) {
       aboutToWin[0] = winCombos[elem]; 
       for (el in winCombos[elem]) {
-        // console.log('el: ' + winCombos[elem][el]);
         if (human.marks.indexOf(winCombos[elem][el]) !== -1) {
           aboutToWin[1].push(winCombos[elem][el]);
         }
       }
-      // console.dir(aboutToWin);
       return true;
     }
   }
@@ -148,17 +143,13 @@ function computerAboutToWin() {
         humanCount++
       }
     }
-    // console.log('humanCount: ' + humanCount);
-    // console.log('compCount: ' + compCount);
     if (compCount === 2 && humanCount === 0) {
       compAboutToWin[0] = winCombos[elem]; 
       for (el in winCombos[elem]) {
-        // console.log('el: ' + winCombos[elem][el]);
         if (computer.marks.indexOf(winCombos[elem][el]) !== -1) {
           compAboutToWin[1].push(winCombos[elem][el]);
         }
       }
-      // console.dir(compAboutToWin);
       return true;
     }
   }
@@ -171,7 +162,6 @@ function compChooseSpace() {
     for (var e in compAboutToWin[0]) {
       if (!(alreadyMarked(compAboutToWin[0][e]))) {
         space = compAboutToWin[0][e];
-        console.log('space: ' + space)
       }
     }
     addMark(computer, space);
@@ -182,7 +172,6 @@ function compChooseSpace() {
     for (var e in aboutToWin[0]) {
       if (!(alreadyMarked(aboutToWin[0][e]))) {
         space = aboutToWin[0][e];
-        console.log('space: ' + space)
       }
     }
     addMark(computer, space);
@@ -191,13 +180,11 @@ function compChooseSpace() {
     aboutToWin = [[],[]];
   } else if (computer.marks.length < 2) {
     space = availCornCent[Math.floor(Math.random()*availCornCent.length)];
-    console.log('space: ' + space);
     addMark(computer, space);
     document.getElementById(space.toString()).textContent = computer.xOrO;
     removeSpace(space);
   } else {
     space = availSpaces[Math.floor(Math.random()*availSpaces.length)];
-    console.log('space: ' + space);
     addMark(computer, space);
     document.getElementById(space.toString()).textContent = computer.xOrO;
     removeSpace(space);
