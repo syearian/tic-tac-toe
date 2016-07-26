@@ -30,6 +30,7 @@ function selectxOrO() {
           human.xOrO = 'O';
           computer.xOrO = 'X';
           $( this ).dialog( "close" );
+          computerTurn();
         }
       }
     });
