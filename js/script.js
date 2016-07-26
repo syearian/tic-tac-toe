@@ -1,8 +1,7 @@
 var spaces = [1,2,3,4,5,6,7,8,9];
 var availSpaces = spaces;
-var corners = [1,3,7,9];
-var availCorners = corners;
-var center = 5;
+var cornerCenter = [1,3,5,7,9];
+var availCornCent = cornerCenter;
 var winCombos = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]]; 
 var human = {
   xOrO: '',
@@ -96,9 +95,9 @@ function compChooseSpace() {
 }
 
 function computerTurn() {
-
+  compChooseSpace();
   if (win()) {
-
+    console.log('You lose!');
   } else {
     humanTurn();
   }
