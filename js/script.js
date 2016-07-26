@@ -104,7 +104,6 @@ function placeMark(target) {
 
 function humanTurn(target) {
   placeMark(target);
-  console.log(computer);
   if (win(human)) {
     window.alert('You Win!');
     reset();
