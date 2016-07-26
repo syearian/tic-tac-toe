@@ -2,7 +2,8 @@ var spaces = [1,2,3,4,5,6,7,8,9];
 var availSpaces = spaces;
 var cornerCenter = [1,3,5,7,9];
 var availCornCent = cornerCenter;
-var winCombos = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]]; 
+var winCombos = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]];
+var aboutToWin = [[],[]];
 var human = {
   xOrO: '',
   marks: []
@@ -50,7 +51,7 @@ function win(player) {
 }
 
 function addMark(player, space) {
-  if (player === 'human') {
+  if (player === human) {
     human.marks.push(space);
   } else {
     computer.marks.push(space);
@@ -85,7 +86,7 @@ function removeSpace(space) {
 function placeMark(target) {
   target.textContent = human.xOrO;
   var space = parseInt(target.id);
-  addMark('human', space);
+  addMark(human, space);
   removeSpace(space);
 }
 
@@ -94,24 +95,79 @@ function humanTurn(target) {
   if (win(human)) {
     console.log("You win!");
   } else {
-    //computerTurn();
+    computerTurn();
+  }
+}
+
+function alreadyMarked(space) {
+  if (human.marks.indexOf(space) !== -1 || computer.marks.indexOf(space) !== -1) {
+  console.log('already marked: ' + space);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function humanAboutToWin() {
+  for (var elem in winCombos) {
+    var humanCount = 0;
+    var compCount = 0;
+    for (var e in winCombos[elem]) {
+      if (human.marks.indexOf(winCombos[elem][e]) !== -1) {
+        humanCount++
+      } else if (computer.marks.indexOf(winCombos[elem][e]) !== -1) {
+        compCount++
+      }
+    }
+    // console.log('humanCount: ' + humanCount);
+    // console.log('compCount: ' + compCount);
+    if (humanCount === 2 && compCount === 0) {
+      aboutToWin[0] = winCombos[elem]; 
+      for (el in winCombos[elem]) {
+        // console.log('el: ' + winCombos[elem][el]);
+        if (human.marks.indexOf(winCombos[elem][el]) !== -1) {
+          aboutToWin[1].push(winCombos[elem][el]);
+        }
+      }
+      // console.dir(aboutToWin);
+      return true;
+    }
   }
 }
 
 function compChooseSpace() {
-  if (computer.marks.length === 0) {
-
+  var space;
+  humanAboutToWin();
+  if (aboutToWin[1].length > 0) {
+    for (var e in aboutToWin[0]) {
+      if (!(alreadyMarked(aboutToWin[0][e]))) {
+        space = aboutToWin[0][e];
+        console.log('space: ' + space)
+      }
+    }
+    addMark(computer, space);
+    document.getElementById(space.toString()).textContent = computer.xOrO;
+    removeSpace(space);
+    aboutToWin = [[],[]];
+  } else if (computer.marks.length < 2) {
+    space = availCornCent[Math.floor(Math.random()*availCornCent.length)];
+    console.log('space: ' + space);
+    addMark(computer, space);
+    document.getElementById(space.toString()).textContent = computer.xOrO;
+    removeSpace(space);
   } else {
-
+    space = availSpaces[Math.floor(Math.random()*availSpaces.length)];
+    console.log('space: ' + space);
+    addMark(computer, space);
+    document.getElementById(space.toString()).textContent = computer.xOrO;
+    removeSpace(space);
   }
 }
 
 function computerTurn() {
   compChooseSpace();
-  if (win()) {
+  if (win(computer)) {
     console.log('You lose!');
-  } else {
-    humanTurn();
   }
 }
 
