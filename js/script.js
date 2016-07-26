@@ -52,6 +52,16 @@ function win(player) {
   }
 }
 
+function winnerIs(player) {
+  if (player = human) {
+    window.alert('You Win!');
+  } else if (player = computer) {
+    window.alert('Computer Wins!');
+  } else {
+    window.alert('Draw!');
+  }
+}
+
 function addMark(player, space) {
   if (player === human) {
     human.marks.push(space);
@@ -94,8 +104,13 @@ function placeMark(target) {
 
 function humanTurn(target) {
   placeMark(target);
+  console.log(computer);
   if (win(human)) {
-    console.log("You win!");
+    window.alert('You Win!');
+    reset();
+  } else if (availSpaces.length === 0) {
+    window.alert('Draw!');
+    reset();
   } else {
     computerTurn();
   }
@@ -122,7 +137,7 @@ function humanAboutToWin() {
     }
     if (humanCount === 2 && compCount === 0) {
       aboutToWin[0] = winCombos[elem]; 
-      for (el in winCombos[elem]) {
+      for (var el in winCombos[elem]) {
         if (human.marks.indexOf(winCombos[elem][el]) !== -1) {
           aboutToWin[1].push(winCombos[elem][el]);
         }
@@ -145,7 +160,7 @@ function computerAboutToWin() {
     }
     if (compCount === 2 && humanCount === 0) {
       compAboutToWin[0] = winCombos[elem]; 
-      for (el in winCombos[elem]) {
+      for (var el in winCombos[elem]) {
         if (computer.marks.indexOf(winCombos[elem][el]) !== -1) {
           compAboutToWin[1].push(winCombos[elem][el]);
         }
@@ -194,12 +209,35 @@ function compChooseSpace() {
 function computerTurn() {
   compChooseSpace();
   if (win(computer)) {
-    console.log('You lose!');
+    window.alert('Computer Wins!');
+    reset();
+  } else if (availSpaces.length === 0) {
+    window.alert('Draw!');
+    reset();
   }
 }
 
 function reset() {
-
+  spaces = [1,2,3,4,5,6,7,8,9];
+  availSpaces = spaces;
+  cornerCenter = [1,3,5,7,9];
+  availCornCent = cornerCenter;
+  winCombos = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]];
+  aboutToWin = [[],[]];
+  compAboutToWin = [[],[]];
+  human = {
+    xOrO: '',
+    marks: []
+  }
+  computer = {
+    xOrO: '',
+    marks: []
+  }
+  var paras = document.getElementsByTagName('p');
+  for (var p in paras) {
+    paras[p].textContent = '';
+  }
+  selectxOrO();
 }
 
 function ready() {
