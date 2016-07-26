@@ -68,6 +68,18 @@ function removeSpace(space) {
     var endArr = availSpaces.slice(index + 1);
     availSpaces = beginArr.concat(endArr);
   }
+  if (availCornCent.indexOf(space) !== -1) {    
+    index = availCornCent.indexOf(space);
+    if (index === 0) {
+      availCornCent.shift();
+    } else if (index === (availCornCent.length -1)) {
+      availCornCent.pop();
+    } else {
+      var beginArr = availCornCent.slice(0, index);
+      var endArr = availCornCent.slice(index + 1);
+      availCornCent = beginArr.concat(endArr);
+    }
+  }
 }
 
 function placeMark(target) {
