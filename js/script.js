@@ -71,28 +71,11 @@ function removeSpace(space) {
   }
 }
 
-function compChooseSpace() {
-  if (computer.marks.length === 0) {
-
-  } else {
-
-  }
-}
-
 function placeMark(target) {
   target.textContent = human.xOrO;
   var space = parseInt(target.id);
   addMark('human', space);
   removeSpace(space);
-}
-
-function computerTurn() {
-
-  if (win()) {
-
-  } else {
-    humanTurn();
-  }
 }
 
 function humanTurn(target) {
@@ -101,6 +84,23 @@ function humanTurn(target) {
     console.log("You win!");
   } else {
     //computerTurn();
+  }
+}
+
+function compChooseSpace() {
+  if (computer.marks.length === 0) {
+
+  } else {
+
+  }
+}
+
+function computerTurn() {
+
+  if (win()) {
+
+  } else {
+    humanTurn();
   }
 }
 
