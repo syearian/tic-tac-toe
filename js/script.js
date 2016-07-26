@@ -37,7 +37,17 @@ function selectxOrO() {
 }
 
 function win(player) {
-
+  for (var elem in winCombos) {
+    var count = 0;
+    for (var e in winCombos[elem]) {
+      if (player.marks.indexOf(winCombos[elem][e]) !== -1) {
+        count++
+      }
+    }
+    if (count === 3) {
+      return true;
+    }
+  }
 }
 
 function addMark(player, space) {
@@ -87,8 +97,8 @@ function computerTurn() {
 
 function humanTurn(target) {
   placeMark(target);
-  if (win()) {
-
+  if (win(human)) {
+    console.log("You win!");
   } else {
     //computerTurn();
   }
