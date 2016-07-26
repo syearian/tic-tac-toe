@@ -5,15 +5,15 @@ var availCorners = corners;
 var center = 5;
 var winCombos = [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,5,7], [3,6,9], [4,5,6], [7,8,9]]; 
 var human = {
-  player: '',
+  xOrO: '',
   marks: []
 }
 var computer = {
-  player: '',
+  xOrO: '',
   marks: []
 }
 
-function selectPlayer() {
+function selectxOrO() {
   $( function() {
     $( "#dialog-confirm" ).dialog({
       resizable: false,
@@ -22,13 +22,13 @@ function selectPlayer() {
       modal: true,
       buttons: {
         "X": function() {
-          human.player = 'X';
-          computer.player = 'O';
+          human.xOrO = 'X';
+          computer.xOrO = 'O';
           $( this ).dialog( "close" );
         },
         "O": function() {
-          human.player = 'O';
-          computer.player = 'X';
+          human.xOrO = 'O';
+          computer.xOrO = 'X';
           $( this ).dialog( "close" );
         }
       }
@@ -70,7 +70,7 @@ function compChooseSpace() {
 }
 
 function placeMark(target) {
-  target.textContent = human.player;
+  target.textContent = human.xOrO;
   var space = parseInt(target.id);
   addMark('human', space);
   removeSpace(space);
@@ -106,7 +106,7 @@ function ready() {
       humanTurn(target);
     });
   }
-  selectPlayer();
+  selectxOrO();
 }
 
 var everythingLoaded = setInterval(function() {
